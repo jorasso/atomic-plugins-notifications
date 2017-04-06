@@ -178,6 +178,7 @@
          * - Error.
          */
         proto.send = function(notification, callback) {
+            alert("Test passed!");
             var identifier = this.idIndex++ + '';
             notification.id = identifier;
             Cocoon.exec(this.serviceName, 'send', [notification], successFunc(callback), callback);
