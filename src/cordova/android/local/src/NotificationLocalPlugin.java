@@ -41,7 +41,7 @@ public class NotificationLocalPlugin extends NotificationPlugin {
             cocoonId = index++;
         }
         public int cocoonId;
-        public int dateInMs;
+        public int someTimeInMs;
         public PendingIntent pendingIntent;
 
         @Override
@@ -49,7 +49,7 @@ public class NotificationLocalPlugin extends NotificationPlugin {
             JSONObject json = super.toJSON();
             try {
                 json.put("cocoonId", cocoonId);
-                json.put("dateInMs", java.lang.System.currentTimeMillis() + 10*1000)
+                json.put("someTimeInMs", java.lang.System.currentTimeMillis() + 10*1000)
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -60,7 +60,7 @@ public class NotificationLocalPlugin extends NotificationPlugin {
         public void fromJSONObject(JSONObject json) {
             super.fromJSONObject(json);
             this.cocoonId = json.optInt("cocoonId",this.cocoonId);
-            this.dateInMs = json.optInt("dateInMs",this.dateInMs);
+            this.someTimeInMs = json.optInt("someTimeInMs",this.someTimeInMs);
         }
     }
 
@@ -105,7 +105,7 @@ public class NotificationLocalPlugin extends NotificationPlugin {
             userData = new JSONObject();
         }
         userData.remove("cocoonId");
-        userData.remove("dateInMs");
+        userData.remove("someTimeInMs");
         notifyNotificationReceived(userData);
     }
 
@@ -194,7 +194,7 @@ public class NotificationLocalPlugin extends NotificationPlugin {
         intent.putExtra(NOTIFICATION_EXTRA_ACTIVITY, this.cordova.getActivity().getClass().getName());
 
         notification.pendingIntent = PendingIntent.getBroadcast(this.cordova.getActivity(), notification.cocoonId, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        alarmManager.set(AlarmManager.RTC_WAKEUP, notification.dateInMs/* java.lang.System.currentTimeMillis() + 10*1000*/, notification.pendingIntent);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, notification.someTimeInMs/* java.lang.System.currentTimeMillis() + 10*1000*/, notification.pendingIntent);
 
         scheduledNotifications.put(notification.identifier, notification);
         ctx.success();
