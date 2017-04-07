@@ -49,7 +49,7 @@ public class NotificationLocalPlugin extends NotificationPlugin {
             JSONObject json = super.toJSON();
             try {
                 json.put("cocoonId", cocoonId);
-                json.put("someTimeInMs", java.lang.System.currentTimeMillis() + 10*1000);
+                json.put("someTimeInMs", 10*1000);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -194,7 +194,7 @@ public class NotificationLocalPlugin extends NotificationPlugin {
         intent.putExtra(NOTIFICATION_EXTRA_ACTIVITY, this.cordova.getActivity().getClass().getName());
 
         notification.pendingIntent = PendingIntent.getBroadcast(this.cordova.getActivity(), notification.cocoonId, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        alarmManager.set(AlarmManager.RTC_WAKEUP, notification.someTimeInMs/* java.lang.System.currentTimeMillis() + 10*1000*/, notification.pendingIntent);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, java.lang.System.currentTimeMillis() + notification.someTimeInMs/*  10*1000*/, notification.pendingIntent);
 
         scheduledNotifications.put(notification.identifier, notification);
         ctx.success();
