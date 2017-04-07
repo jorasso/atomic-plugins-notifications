@@ -49,7 +49,7 @@ public class NotificationLocalPlugin extends NotificationPlugin {
             JSONObject json = super.toJSON();
             try {
                 json.put("cocoonId", cocoonId);
-                json.put("someTimeInMs", java.lang.System.currentTimeMillis() + 10*1000)
+                json.put("someTimeInMs", java.lang.System.currentTimeMillis() + 10*1000);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
