@@ -105,7 +105,7 @@ public class NotificationLocalPlugin extends NotificationPlugin {
             userData = new JSONObject();
         }
         userData.remove("cocoonId");
-        userData.remove("someTimeInMs");
+        //userData.remove("someTimeInMs");
         notifyNotificationReceived(userData);
     }
 
