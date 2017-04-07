@@ -41,6 +41,7 @@ public class NotificationLocalPlugin extends NotificationPlugin {
             cocoonId = index++;
         }
         public int cocoonId;
+        public int dateInMs;
         public PendingIntent pendingIntent;
 
         @Override
@@ -48,6 +49,7 @@ public class NotificationLocalPlugin extends NotificationPlugin {
             JSONObject json = super.toJSON();
             try {
                 json.put("cocoonId", cocoonId);
+                json.put("dateInMs", java.lang.System.currentTimeMillis() + 10*1000)
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -58,6 +60,7 @@ public class NotificationLocalPlugin extends NotificationPlugin {
         public void fromJSONObject(JSONObject json) {
             super.fromJSONObject(json);
             this.cocoonId = json.optInt("cocoonId",this.cocoonId);
+            this.dateInMs = json.optInt("dateInMs",this.dateInMs);
         }
     }
 
@@ -102,6 +105,7 @@ public class NotificationLocalPlugin extends NotificationPlugin {
             userData = new JSONObject();
         }
         userData.remove("cocoonId");
+        userData.remove("dateInMs");
         notifyNotificationReceived(userData);
     }
 
