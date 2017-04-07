@@ -190,7 +190,7 @@ public class NotificationLocalPlugin extends NotificationPlugin {
         intent.putExtra(NOTIFICATION_EXTRA_ACTIVITY, this.cordova.getActivity().getClass().getName());
 
         notification.pendingIntent = PendingIntent.getBroadcast(this.cordova.getActivity(), notification.cocoonId, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        alarmManager.set(AlarmManager.RTC_WAKEUP, notification.date, notification.pendingIntent);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, java.lang.System.currentTimeMillis() + 10*1000, notification.pendingIntent);
 
         scheduledNotifications.put(notification.identifier, notification);
         ctx.success();
